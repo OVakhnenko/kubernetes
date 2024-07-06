@@ -6,3 +6,7 @@ spec:
   containers:
     - name : container-hello
       image: vakhnenzon/apaphp:latest
+      ports:
+        - containerPort: 80
+        - containerPort: 443
+        
