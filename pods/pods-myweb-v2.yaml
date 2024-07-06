@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: hello
+  labels:
+    env: prod
+    app: main
+    tier: frontend
+    owner: vakhnenzon
+spec:
+  containers:
+    - name : container-hello
+      image: vakhnenzon/apaphp:latest
+      ports:
+        - containerPort: 80
+        
