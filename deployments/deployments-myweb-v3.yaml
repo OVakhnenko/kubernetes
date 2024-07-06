@@ -1,0 +1,49 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hello-deployment
+  labels:
+    app: hello-application
+spec:
+  replicas: 2
+  selector:
+      matchLabels:
+        project: hello-project
+  template:
+    metadata:
+      labels:    
+        project: hello-project
+    spec:
+      containers:
+        - name: hello-container
+          image: vakhnenzon/apaphp:latest
+          ports:
+            - containerPort: 80
+            
+---
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: hello-autoscaling
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: hello-deployment-autoscaling
+  minReplicas: 2
+  maxReplicas: 4
+  metrics:
+  - type: Resource
+    resource:
+      name: cpu
+      target:
+        type: Utilization
+        averageUtilization: 70
+  - type: Resource
+    resource:
+      name: memory
+      target:
+        type: Utilization
+        averageUtilization: 80
+       
+        

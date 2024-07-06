@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hello-deployment
+  labels:
+    app: hello-application
+spec:
+  selector:
+      matchLabels:
+        project: hello-project
+  template:
+    metadata:
+      labels:    
+        project: hello-project
+    spec:
+      containers:
+        - name: hello-container
+          image: vakhnenzon/apaphp:latest
+          ports:
+            - containerPort: 80
+            
