@@ -15,7 +15,7 @@ spec:
         - containerPort: 80
 
     - name : container-tomcat
-      image: vakhnenzon/tomcat:9.0
+      image: tomcat:8.5.38
       ports:
         - containerPort: 8080
                 
